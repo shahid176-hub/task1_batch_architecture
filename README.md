@@ -1,9 +1,7 @@
 # Task 1 — Batch-processing Data Architecture (skeleton)
 
-This repository is a starter skeleton for the **Batch-processing-based data architecture** required by the course assignment.
+This repository shows the **Batch-processing-based data architecture** required by the course assignment.
 It contains microservice placeholders, Dockerfiles, `docker-compose.yml`, CI workflow and a step-by-step guide for **GitHub version control** and **Docker updates / runs**.
-
-**Important:** This is a template. Replace placeholders with your real code, configs and credentials before running in production.
 
 ---
 
@@ -24,7 +22,7 @@ It contains microservice placeholders, Dockerfiles, `docker-compose.yml`, CI wor
 
 ---
 
-## Recommended directory structure (this skeleton)
+## directory structure 
 - ingestion-service/        # ingestion microservice (python/fastapi template)
 - batch-processing/         # spark job / scripts (example)
 - minio/                    # MinIO config / helpful scripts
@@ -115,14 +113,4 @@ docker compose up -d --no-deps --build ingestion-service
 docker compose down && docker compose up -d
 ```
 
----
 
-## Where to put assignment deliverables
-- `docs/` : screenshots, architecture diagrams (PNG), notes for PebblePad
-- `deliverables/phase1/` : conception phase artifacts
-- `deliverables/phase2/` : development phase artifacts, GitHub repo link (TXT)
-- `deliverables/phase3/` : final abstract PDF, final repo link (TXT)
-
----
-## References
-See the official assignment brief (provided by IU.DE) for exact submission rules and file naming patterns. fileciteturn0file0
