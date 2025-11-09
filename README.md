@@ -23,65 +23,14 @@ It contains microservice placeholders, Dockerfiles, `docker-compose.yml`, CI wor
 ---
 
 ## directory structure 
-- ingestion-service/        # ingestion microservice (python/fastapi template)
-- batch-processing/         # spark job / scripts (example)
+- ingestion-service/        # ingestion microservice (python/fastapi )
+- batch-processing/         # spark job / scripts 
 - minio/                    # MinIO config / helpful scripts
-- delivery-api/             # API to serve aggregated results (fastapi template)
+- delivery-api/             # API to serve aggregated results 
 - analytics/                # notebooks / analysis
-- airflow/                  # DAG templates for scheduling
+- airflow/                  # DAG  for scheduling
 - infra/                    # docker-compose, env files, docs
 - .github/workflows/        # CI workflow example
-
----
-
-## Git / GitHub: step-by-step version control guide
-### 1) Initialise repository locally
-```bash
-git init
-git checkout -b main
-git add .
-git commit -m "chore: initial project skeleton for batch-processing architecture"
-```
-### 2) Create remote and push (GitHub)
-```bash
-# create repo on GitHub web UI, then:
-git remote add origin git@github.com:<your-org-or-user>/<repo-name>.git
-git push -u origin main
-```
-### 3) Branching model (feature-driven)
-- `main` : production-ready, passing CI
-- `develop` : integration branch (optional)
-- `feature/<short-desc>` : new features
-- `hotfix/<id>` : urgent fixes for main
-
-Example workflow:
-```bash
-git checkout -b feature/ingestion-minio-connector
-# code, tests, docs...
-git add . && git commit -m "feat: add MinIO connector to ingestion service"
-git push -u origin feature/ingestion-minio-connector
-# open Pull Request on GitHub; review and merge to develop/main
-```
-
-### 4) Commit message style (conventional commits recommended)
-Examples:
-- `feat: add spark job to aggregate daily metrics`
-- `fix: correct timestamp parsing in ingestion`
-- `chore: bump python base image to 3.11`
-- `docs: add readme for CI workflow`
-
-### 5) Releases & tagging
-```bash
-git tag -a v0.1.0 -m "Initial working prototype"
-git push origin v0.1.0
-```
-Use semantic versioning: `MAJOR.MINOR.PATCH`.
-
-### 6) GitHub Actions (CI) — included sample in `.github/workflows/ci.yml`:
-- Builds Docker images
-- Runs basic unit/test (placeholder)
-- Lints (optional)
-- Example uses `on: push` and PR checks (see file)
 
 ---
 
