@@ -1,0 +1,11 @@
+/mnt/data
+__pycache__/
+*.pyc
+.env
+.env.*
+*.egg-info
+.vscode/
+.idea/
+*.db
+*.sqlite
+node_modules/

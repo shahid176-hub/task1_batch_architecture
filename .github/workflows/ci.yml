@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Build ingestion-service image (local)
+        run: |
+          docker build -t ingestion-service:ci -f ingestion-service/Dockerfile ./ingestion-service
+      - name: Lint (placeholder)
+        run: echo "Run linters or tests here"
