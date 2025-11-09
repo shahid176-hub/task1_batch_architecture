@@ -1,11 +1,13 @@
-/mnt/data
-__pycache__/
+# .gitignore
+cat > .gitignore <<'EOF'
+infra/.env
 *.pyc
+__pycache__/
+data/
 .env
-.env.*
-*.egg-info
+secrets/
+*.log
 .vscode/
-.idea/
-*.db
-*.sqlite
-node_modules/
+EOF
+git add .gitignore
+git commit -m "chore: add .gitignore"
