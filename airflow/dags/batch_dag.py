@@ -1,22 +1,22 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from datetime import datetime
+from airflow.utils.dates import days_ago
 
 with DAG(
-    dag_id="batch_pipeline",
-    start_date=datetime(2024,1,1),
+    dag_id="nyc_taxi_batch_pipeline",
     schedule_interval="@daily",
-    catchup=False
-):
+    start_date=days_ago(1),
+    catchup=False,
+) as dag:
 
     ingest = BashOperator(
-        task_id="run_ingestion",
-        bash_command="docker exec ingest python app/main.py"
+        task_id="ingest_csv_to_minio",
+        bash_command="docker exec ingest python app.py"
     )
 
-    transform = BashOperator(
-        task_id="spark_transform",
-        bash_command="docker exec spark spark-submit /spark_jobs/transform_job.py"
+    spark_curate = BashOperator(
+        task_id="spark_curate",
+        bash_command="docker exec spark-master spark-submit /spark-jobs/job.py"
     )
 
-    ingest >> transform
+    ingest >> spark_curate
