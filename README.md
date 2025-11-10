@@ -1,4 +1,4 @@
-# Task 1 — Batch-processing Data Architecture (skeleton)
+# Task 1 — Batch-processing Data Architecture 
 
 This repository shows the **Batch-processing-based data architecture** required by the course assignment.
 It contains microservice placeholders, Dockerfiles, `docker-compose.yml`, CI workflow and a step-by-step guide for **GitHub version control** and **Docker updates / runs**.
