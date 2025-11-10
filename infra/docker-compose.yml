@@ -69,6 +69,7 @@ services:
       - "7077:7077"
       - "8082:8080"
     volumes:
+      - ../spark-jobs:/spark-jobs
       - ../services/preprocess/spark_app:/opt/spark-apps
 
   spark-worker:
@@ -85,7 +86,7 @@ services:
 
   ingest:
     build:
-      context: ../services/ingest     # ✅ FIXED PATH
+      context: ../services/ingest     # 
     env_file: ./.env
     environment:
       MINIO_ENDPOINT: ${MINIO_ENDPOINT}

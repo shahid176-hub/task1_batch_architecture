@@ -1,9 +1,22 @@
-# airflow/dags/batch_dag.py (template)
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from datetime import datetime, timedelta
+from datetime import datetime
 
-with DAG('batch_processing_dag', start_date=datetime(2025,1,1), schedule_interval='@quarterly', catchup=False) as dag:
-    ingest = BashOperator(task_id='ingest', bash_command='echo "ingest placeholder"')
-    run_batch = BashOperator(task_id='run_batch', bash_command='echo "run batch placeholder"')
-    ingest >> run_batch
+with DAG(
+    dag_id="batch_pipeline",
+    start_date=datetime(2024,1,1),
+    schedule_interval="@daily",
+    catchup=False
+):
+
+    ingest = BashOperator(
+        task_id="run_ingestion",
+        bash_command="docker exec ingest python app/main.py"
+    )
+
+    transform = BashOperator(
+        task_id="spark_transform",
+        bash_command="docker exec spark spark-submit /spark_jobs/transform_job.py"
+    )
+
+    ingest >> transform
